@@ -1,7 +1,22 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const router = express.Router();
 const fileUpload = require("express-fileupload");
+
+// ROUTS
+router.get("/api/v1/gallery", (req, res, nex) => {
+  res.send(200);
+});
+router.post("/api/v1/create", (req, res, nex) => {
+  res.send(200);
+});
+router.post("/api/v1/update", (req, res, nex) => {
+  res.send(200);
+});
+router.post("/api/v1/delete", (req, res, nex) => {
+  res.send(200);
+});
 
 const UPLOADS = [
   "image/jpeg",
@@ -53,6 +68,7 @@ app.post("/api/upload", (req, res, next) => {
           .status(500)
           .send({ error, success: false, message: "Error in upload" });
       }
+      // add to DB
       res.status(200).send({
         success: true,
         message: "file uploaded",
