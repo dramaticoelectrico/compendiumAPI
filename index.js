@@ -57,7 +57,7 @@ app.post("/api/upload", (req, res, next) => {
           bytes_step: 20000,
           min_width: 200,
           max_width: 1200,
-          max_images: 6,
+          max_images: 4,
         },
       ],
       public_id: md5,
