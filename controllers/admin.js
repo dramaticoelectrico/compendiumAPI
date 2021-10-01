@@ -24,13 +24,7 @@ cloudinary.config({
 exports.postFormData = async (req, res, next) => {
   const { image, title, fstop, iso, shutterSpeed, lens, alt } = req.body;
   try {
-    const newEntry = {
-      title,
-      description,
-      image,
-      tag,
-      publish,
-    };
+    const newEntry = { image, title, fstop, iso, shutterSpeed, lens, alt };
     const gallery = new Gallery(newEntry);
     await gallery.save();
     res.status(200).send({ success: true, gallery });
@@ -55,16 +49,16 @@ exports.postFormEdit = async (req, res, next) => {
     }
   }
   try {
-    const gallery = await Gallery.findById(galleryId);
-    gallery.title = title;
-    gallery.description = description;
-    gallery.publish = publish;
-    gallery.tag = tag;
-    if (updatedImage) {
-      gallery.image = updatedImage;
-    }
-    await gallery.save();
-    res.status(200).redirect("/admin");
+    // const gallery = await Gallery.findById(galleryId);
+    // gallery.title = title;
+    // gallery.description = description;
+    // gallery.publish = publish;
+    // gallery.tag = tag;
+    // if (updatedImage) {
+    //   gallery.image = updatedImage;
+    // }
+    // await gallery.save();
+    res.status(200).send({ success: true, message: "success image created" });
   } catch (error) {
     next(error);
   }
@@ -77,7 +71,7 @@ exports.postFormDelete = async (req, res, next) => {
     if (imageId) {
       await cloudinary.uploader.destroy(imageId, callbackCloudinary);
     }
-    await Gallery.deleteOne({ _id: id });
+    // await Gallery.deleteOne({ _id: id });
     res.status(200).send({ success: true, message: "success deleted" });
   } catch (error) {
     next(error);
