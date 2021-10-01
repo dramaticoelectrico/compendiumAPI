@@ -27,7 +27,7 @@ exports.postFormData = async (req, res, next) => {
     const newEntry = { image, title, fstop, iso, shutterSpeed, lens, alt };
     const gallery = new Gallery(newEntry);
     await gallery.save();
-    res.status(200).send({ success: true, gallery });
+    res.status(200).json({ success: true, gallery });
   } catch (error) {
     next(error);
   }
@@ -58,7 +58,7 @@ exports.postFormEdit = async (req, res, next) => {
     //   gallery.image = updatedImage;
     // }
     // await gallery.save();
-    res.status(200).send({ success: true, message: "success image created" });
+    res.status(200).json({ success: true, message: "success image created" });
   } catch (error) {
     next(error);
   }
@@ -72,7 +72,7 @@ exports.postFormDelete = async (req, res, next) => {
       await cloudinary.uploader.destroy(imageId, callbackCloudinary);
     }
     // await Gallery.deleteOne({ _id: id });
-    res.status(200).send({ success: true, message: "success deleted" });
+    res.status(200).json({ success: true, message: "success deleted" });
   } catch (error) {
     next(error);
   }
@@ -105,12 +105,12 @@ exports.postImageUpload = async (req, res, next) => {
       if (error) {
         res
           .status(500)
-          .send({ error, success: false, message: "Error in upload" });
+          .json({ error, success: false, message: "Error in upload" });
         next(error);
       }
 
       const image = imageDataFormat(result);
-      res.status(200).send({
+      res.status(200).json({
         success: true,
         message: "file uploaded",
         data: image,
