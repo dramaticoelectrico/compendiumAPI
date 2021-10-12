@@ -13,8 +13,6 @@ function auth(req, res, next) {
     res.json({ success: false, error });
   }
 }
-module.exports = auth;
-
 const registerUser = (formData) => {
   const schema = {
     name: Joi.string().min(6).required(),
@@ -32,4 +30,4 @@ const loginUser = (formData) => {
   const { error } = Joi.validate(formData, schema);
   return error;
 };
-module.exports = { registerUser, loginUser };
+module.exports = { auth, registerUser, loginUser };
