@@ -133,5 +133,3 @@ exports.postImageUpload = async (req, res, next) => {
     }
   );
 };
-
-// ADMIN LOGIN
