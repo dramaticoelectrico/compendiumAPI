@@ -3,7 +3,7 @@ const router = express.Router();
 const auth = require("../helpers/jwtValidate");
 
 const adminController = require("../controllers/admin");
-
+const galleryController = require("../controllers/gallery");
 const multer = require("multer");
 var storage = multer.diskStorage({
   filename: function (req, file, callback) {
@@ -11,24 +11,25 @@ var storage = multer.diskStorage({
   },
 });
 var upload = multer({ storage: storage });
-
+// Get images
+router.get("/api/v1/gallery", galleryController.getGallery);
 // add Image
 router.post(
-  "/admin/upload",
+  "/api/v1/admin/upload",
   auth,
   upload.single("image"),
   adminController.postImageUpload
 );
 // add entry
-router.post("/admin/create", auth, adminController.postFormData);
+router.post("/api/v1/admin/create", auth, adminController.postFormData);
 // update data
 router.post(
-  "/admin/edit",
+  "/api/v1/admin/edit",
   auth,
   upload.single("image"),
   adminController.postFormEdit
 );
 // delete data
-router.post("/admin/delete", auth, adminController.postFormDelete);
+router.post("/api/v1/admin/delete", auth, adminController.postFormDelete);
 
 module.exports = router;
