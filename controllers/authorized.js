@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
-const { registerUser, loginUser } = require("../helpers");
+const { registerUser, loginUser } = require("../helpers/jwtValidate");
 
 // API JS ENABLED
 exports.apiRegister = async (req, res) => {

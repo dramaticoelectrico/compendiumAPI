@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const auth = require("../helpers/jwtValidate");
 const multer = require("multer");
 const adminController = require("../controllers/admin");
+const { auth } = require("../helpers/jwtValidate");
 
 var storage = multer.diskStorage({
   filename: function (req, file, callback) {

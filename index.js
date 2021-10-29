@@ -1,20 +1,21 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const adminPages = require("./routes/admin");
-const authorizeUser = require("./routes/authorized");
+
+const mongoose = require("mongoose");
+
+mongoose.connect(
+  process.env.DB_CONNECT,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => {
+    console.log("connected to DB");
+  }
+);
+
 const galleryItems = require("./routes/gallery");
 const errorHandler = require("./helpers/errorResponse");
-
-// const mongoose = require('mongoose')
-
-// mongoose.connect(
-//   process.env.DB_CONNECT,
-//   { useNewUrlParser: true, useUnifiedTopology: true },
-//   () => {
-//     console.log('connected to DB')
-//   }
-// )
+const adminPages = require("./routes/admin");
+const authorizeUser = require("./routes/authorized");
 
 app.use(adminPages);
 app.use(galleryItems);
