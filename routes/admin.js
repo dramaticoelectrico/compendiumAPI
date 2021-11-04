@@ -13,21 +13,21 @@ var upload = multer({ storage: storage });
 
 // add Image
 router.post(
-  "/api/v1/admin/upload",
+  "/api/v1/admin/image",
   auth,
   upload.single("image"),
   adminController.postImageUpload
 );
 // add entry
-router.post("/api/v1/admin/create", auth, adminController.postFormData);
+router.post("/api/v1/admin", auth, adminController.postFormData);
 // update data
-router.post(
-  "/api/v1/admin/edit",
+router.put(
+  "/api/v1/admin/edit/:id",
   auth,
   upload.single("image"),
   adminController.postFormEdit
 );
 // delete data
-router.post("/api/v1/admin/delete", auth, adminController.postFormDelete);
+router.post("/api/v1/admin/delete/:id", auth, adminController.postFormDelete);
 
 module.exports = router;

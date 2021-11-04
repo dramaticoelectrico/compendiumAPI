@@ -3,6 +3,6 @@ const router = express.Router();
 const galleryController = require("../controllers/gallery");
 
 // Get images
-router.get("/api/v1/gallery", galleryController.getGallery);
+router.get("/api/v1/gallery/:id", galleryController.getGallery);
 
 module.exports = router;
